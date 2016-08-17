@@ -6,8 +6,9 @@ function fetch (child) {
   return new Promise((resolve, reject) => {
     api.child(child).once('value', snapshot => {
       const val = snapshot.val();
-      if (val) resolve(val);
-      else {
+      if (val) {
+        resolve(val);
+      }  else {
         // New items cannot be got so quickly.
         setTimeout(() => {
           fetch(child).then(val => resolve(val));
