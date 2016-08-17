@@ -12,5 +12,6 @@ export function listSelector(state, ownProps) {
     items,
     page,
     maxPage,
+    activeType,
   };
 }

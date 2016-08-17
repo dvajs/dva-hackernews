@@ -6,11 +6,17 @@ import { listSelector } from '../models/item/selectors';
 import ItemList from '../components/ItemList.jsx';
 import Layout from '../components/Layout.jsx';
 
-function ItemPage({ app, items, page, maxPage }) {
+function ItemPage({ app, items, page, maxPage, activeType }) {
   return (
     <Layout>
       <div className={styles.normal}>
-        <ItemList loading={app.loading} items={items} page={page} maxPage={maxPage} />
+        <ItemList
+          loading={app.loading}
+          items={items}
+          page={page}
+          maxPage={maxPage}
+          activeType={activeType}
+        />
       </div>
     </Layout>
   );

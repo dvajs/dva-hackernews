@@ -4,20 +4,20 @@ import styles from './ItemList.less';
 import Spinner from './Spinner.jsx';
 import Item from './Item.jsx';
 
-const ItemList = ({ loading, items, page, maxPage }) => {
+const ItemList = ({ loading, items, page, maxPage, activeType }) => {
   return (
     <div className={styles.normal}>
       <Spinner loading={loading} />
       <div className={styles.nav}>
         {
           page > 1
-            ? <Link to={`/top/${page - 1}`}>&lt; prev</Link>
+            ? <Link to={`/${activeType}/${page - 1}`}>&lt; prev</Link>
             : <a className={styles.disabled}>&lt; prev</a>
         }
         <span>{`${page}/${maxPage}`}</span>
         {
           page < maxPage
-            ? <Link to={`/top/${page + 1}`}>more &gt;</Link>
+            ? <Link to={`/${activeType}/${page + 1}`}>more &gt;</Link>
             : <a className={styles.disabled}>more &gt;</a>
         }
       </div>
