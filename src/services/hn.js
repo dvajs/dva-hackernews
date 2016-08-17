@@ -6,9 +6,13 @@ function fetch (child) {
   return new Promise((resolve, reject) => {
     api.child(child).once('value', snapshot => {
       const val = snapshot.val();
-      // mark the timestamp when this item is cached
-      val.__lastUpdated = Date.now();
-      resolve(val);
+      if (val) resolve(val);
+      else {
+        // New items cannot be got so quickly.
+        setTimeout(() => {
+          fetch(child).then(val => resolve(val));
+        }, 500);
+      }
     }, reject);
   });
 }
@@ -29,7 +33,7 @@ export async function fetchUser(id) {
   return fetch(`user/${id}`);
 }
 
-export async function watchList(type, cb) {
+export function watchList(type, cb) {
   let first = true;
   const ref = api.child(`${type}stories`);
   const handler = snapshot => {

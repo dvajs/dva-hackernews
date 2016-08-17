@@ -31,20 +31,55 @@ export default {
 
   subscriptions: [
     function({ dispatch, history }) {
+      let activeType = null;
+      let unwatchList = null;
+      let page = null;
+
+      function fetchList(type, _page = 1) {
+        page = _page;
+        dispatch({
+          type: 'item/saveActiveType',
+          payload: type,
+        });
+        dispatch({
+          type: 'item/fetchList',
+          payload: {
+            type,
+            page,
+          },
+        });
+      }
+
+      function doWatchList(type) {
+        watchList(type, ids => {
+          dispatch({
+            type: 'item/saveList',
+            payload: {
+              type, ids
+            },
+          });
+          dispatch({
+            type: 'item/fetchList',
+            payload: {
+              type,
+              page,
+            },
+          });
+        });
+      }
+
       history.listen(({ pathname }, { params }) => {
         for (const type of ITEM_TYPES) {
           if (pathToRegexp(`/${type}/:page?`).test(pathname)) {
-            dispatch({
-              type: 'item/saveActiveType',
-              payload: type,
-            });
-            dispatch({
-              type: 'item/fetchList',
-              payload: {
-                type,
-                page: params.page || 1,
-              },
-            });
+            // fetch
+            fetchList(type, params.page);
+
+            // watch
+            if (activeType !== type) {
+              activeType = type;
+              if (unwatchList) unwatchList();
+              unwatchList = doWatchList(type);
+            }
           }
         }
       });
