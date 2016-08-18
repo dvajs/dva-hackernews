@@ -27,6 +27,6 @@
   "scripts": {
     "start": "dora --plugins \"proxy,webpack,webpack-hmr\"",
     "build": "atool-build",
-    "test": "atool-test-mocha ./src/**/*-test.js"
+    "test": "atool-test-mocha ./src/**/*-test.js --timeout 20000"
   }
 }

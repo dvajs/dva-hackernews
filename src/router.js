@@ -1,16 +1,18 @@
 import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute, Link, Redirect } from 'dva/router';
+import ListPage from './routes/ListPage';
 import ItemPage from './routes/ItemPage';
 
 export default function({ history }) {
   return (
     <Router history={history}>
       <Redirect from="/" to="/top" />
-      <Route path="/top(/:page)" component={ItemPage} />
-      <Route path="/new(/:page)" component={ItemPage} />
-      <Route path="/show(/:page)" component={ItemPage} />
-      <Route path="/ask(/:page)" component={ItemPage} />
-      <Route path="/job(/:page)" component={ItemPage} />
+      <Route path="/top(/:page)" component={ListPage} />
+      <Route path="/new(/:page)" component={ListPage} />
+      <Route path="/show(/:page)" component={ListPage} />
+      <Route path="/ask(/:page)" component={ListPage} />
+      <Route path="/job(/:page)" component={ListPage} />
+      <Route path="/item(/:itemId)" component={ItemPage} />
     </Router>
   );
 };

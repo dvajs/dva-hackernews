@@ -15,3 +15,13 @@ export function listSelector(state, ownProps) {
     activeType,
   };
 }
+
+export function itemSelector(state, ownProps) {
+  const id = ownProps.params.itemId;
+  const item = state.item.itemsById[id];
+
+  return {
+    item,
+    itemsById: state.item.itemsById,
+  };
+}

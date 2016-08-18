@@ -17,9 +17,9 @@ describe('services/hn', () => {
   });
 
   it('fetchItem', done => {
-    fetchItem('12298820').then(res => {
-      expect(res.id).toEqual(12298820);
-      expect(res.title).toEqual('Ask the ethicist: Should bots get a byline?');
+    fetchItem('12309777').then(res => {
+      expect(res.id).toEqual(12309777);
+      expect(res.title).toEqual('My Goal: the lowest possible barrier to entry to learn Deep Learning (in Python)');
       done();
     });
   });

@@ -84,6 +84,17 @@ export default {
         }
       });
     },
+
+    function({ dispatch, history }) {
+      history.listen(({ pathname }, { params }) => {
+        if (pathToRegexp(`/item/:itemId`).test(pathname)) {
+          dispatch({
+            type: 'item/fetchComments',
+            payload: params.itemId,
+          });
+        }
+      })
+    },
   ],
 
   effects: {
@@ -99,9 +110,29 @@ export default {
       );
       yield put({ type: 'item/saveList', payload: { ids, type } });
       yield put({ type: 'item/saveItems', payload: items });
+
       yield put({ type: 'app/hideLoading' });
     },
-    *'item/fetchComments'({ payload }) {},
+
+    *'item/fetchComments'({ payload: id }) {
+      yield put({ type: 'app/showLoading' });
+      const item = yield call(fetchItem, id);
+      yield put({ type: 'item/saveItems', payload: [item] });
+
+      let ids = item.kids;
+      while (ids && ids.length) {
+        const items = yield call(fetchItems, ids);
+        yield put({ type: 'item/saveItems', payload: items });
+        ids = items.reduce((memo, item) => {
+          if (item.kids) {
+            memo = [...memo, ...item.kids];
+          }
+          return memo;
+        }, []);
+      }
+
+      yield put({ type: 'app/hideLoading' });
+    },
   },
 
   reducers: {
@@ -109,6 +140,7 @@ export default {
       const { ids, type } = payload;
       return { ...state, lists: { ...state.lists, [type]: ids } };
     },
+
     'item/saveItems'(state, { payload: itemsArr }) {
       const items = itemsArr.reduce((memo, item) => {
         memo[item.id] = item;
@@ -116,6 +148,7 @@ export default {
       }, {});
       return { ...state, itemsById: { ...state.itemsById, ...items }};
     },
+
     'item/saveActiveType'(state, { payload: activeType }) {
       return { ...state, activeType };
     },
