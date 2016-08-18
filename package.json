@@ -9,6 +9,7 @@
     "firebase": "^2.4.2",
     "path-to-regexp": "^1.5.3",
     "react": "^15.1.0",
+    "react-addons-css-transition-group": "^15.3.0",
     "react-dom": "^15.1.0"
   },
   "devDependencies": {

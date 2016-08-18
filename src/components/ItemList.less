@@ -1,6 +1,5 @@
 
 .normal {
-
 }
 
 .nav {
@@ -34,5 +33,20 @@
 @media (max-width: 600px) {
   .list {
     margin: 10px 0;
+  }
+}
+
+:global {
+  .item-leave.item-leave-active,
+  .item-enter {
+    opacity: 0.01;
+    transform: translate(30px, 0);
+  }
+
+  .item-leave,
+  .item-enter.item-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .5s cubic-bezier(.55, 0, .1, 1);
   }
 }

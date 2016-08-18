@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'dva/router';
 import styles from './ItemList.less';
 import Spinner from './Spinner.jsx';
@@ -22,9 +23,15 @@ const ItemList = ({ loading, items, page, maxPage, activeType }) => {
         }
       </div>
       <div className={styles.list}>
-        {
-          items.map(item => <Item key={item.id} item={item} />)
-        }
+        <ReactCSSTransitionGroup
+          transitionName="item"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+        >
+          {
+            items.map(item => <Item key={item.id} item={item} />)
+          }
+        </ReactCSSTransitionGroup>
       </div>
     </div>
   );
