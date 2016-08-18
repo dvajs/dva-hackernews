@@ -28,6 +28,7 @@ export default function({ history }) {
         <IndexRoute component={ListPage} />
         <Route path=":page" component={ListPage} />
       </Route>
+      <Route path="/item/:itemId" component={ItemPage} />
       <Route path="/user(/:userId)" component={UserPage} />
     </Router>
   );
