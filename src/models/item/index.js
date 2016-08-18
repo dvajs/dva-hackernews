@@ -4,7 +4,6 @@ import {
   fetchIdsByType,
   fetchItem,
   fetchItems,
-  fetchUser,
   watchList,
 } from '../../services/hn';
 
@@ -93,7 +92,7 @@ export default {
             payload: params.itemId,
           });
         }
-      })
+      });
     },
   ],
 

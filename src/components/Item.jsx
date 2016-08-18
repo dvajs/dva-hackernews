@@ -21,7 +21,7 @@ const Item = ({ item }) => {
       <span className={styles.title}>
         {
           url
-            ? <span><a href="">{title}</a><span className={styles.host}>({host(url)})</span></span>
+            ? <span><a href={url} target="_blank">{title}</a><span className={styles.host}> ({host(url)})</span></span>
             : <Link to={`/item/${id}`}>{title}</Link>
         }
       </span>

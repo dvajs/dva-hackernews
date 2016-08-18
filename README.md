@@ -11,7 +11,7 @@ HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-h
 - [x] Item Page
 - [ ] Real-time List Update with FLIP Animation
 - [x] Comment Page
-- [ ] User Page
+- [x] User Page
 - [ ] SSR
 - [ ] Transform Animation
 

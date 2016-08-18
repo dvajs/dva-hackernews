@@ -8,7 +8,6 @@ import {
 } from '../../services/hn';
 
 describe('services/hn', () => {
-
   it('fetchIdsByType', done => {
     fetchIdsByType('new').then(res => {
       expect(res.length).toEqual(500);
@@ -32,5 +31,10 @@ describe('services/hn', () => {
     });
   });
 
-  // fetchItems(['12298820', '12298817'])
+  it('fetchUser', done => {
+    fetchUser('williamtrask').then(res => {
+      expect(res.id).toEqual('williamtrask');
+      done();
+    });
+  });
 });
