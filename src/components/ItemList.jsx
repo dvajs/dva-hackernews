@@ -5,7 +5,7 @@ import styles from './ItemList.less';
 import Spinner from './Spinner.jsx';
 import Item from './Item.jsx';
 
-const ItemList = ({ loading, items, page, maxPage, activeType }) => {
+const ItemList = ({ loading, items, page, maxPage, activeType, location }) => {
   return (
     <div className={styles.normal}>
       <Spinner loading={loading} />
@@ -22,17 +22,23 @@ const ItemList = ({ loading, items, page, maxPage, activeType }) => {
             : <a className={styles.disabled}>more &gt;</a>
         }
       </div>
-      <div className={styles.list}>
-        <ReactCSSTransitionGroup
-          transitionName="item"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-        >
-          {
-            items.map(item => <Item key={item.id} item={item} />)
-          }
-        </ReactCSSTransitionGroup>
-      </div>
+      <ReactCSSTransitionGroup
+        transitionName="list"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+      >
+        <div key={location.pathname} className={styles.list}>
+          <ReactCSSTransitionGroup
+            transitionName="item"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+          >
+            {
+              items.map(item => <Item key={item.id} item={item} />)
+            }
+          </ReactCSSTransitionGroup>
+        </div>
+      </ReactCSSTransitionGroup>
     </div>
   );
 };

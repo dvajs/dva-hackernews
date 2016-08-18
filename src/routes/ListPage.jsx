@@ -6,7 +6,7 @@ import { listSelector } from '../models/item/selectors';
 import ItemList from '../components/ItemList.jsx';
 import Layout from '../components/Layout.jsx';
 
-function ListPage({ app, items, page, maxPage, activeType }) {
+function ListPage({ app, items, page, maxPage, activeType, location }) {
   return (
     <Layout>
       <div className={styles.normal}>
@@ -16,6 +16,7 @@ function ListPage({ app, items, page, maxPage, activeType }) {
           page={page}
           maxPage={maxPage}
           activeType={activeType}
+          location={location}
         />
       </div>
     </Layout>

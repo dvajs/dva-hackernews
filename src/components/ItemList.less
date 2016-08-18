@@ -28,6 +28,7 @@
   position: absolute;
   margin: 72px 0 30px;
   width: 100%;
+  transition: all .5s cubic-bezier(.55, 0, .1, 1);
 }
 
 @media (max-width: 600px) {
@@ -37,12 +38,24 @@
 }
 
 :global {
+  .list-leave.list-leave-active,
+  .list-enter {
+    opacity: 0.01;
+    transform: translate(0, 0);
+  }
+  .list-enter.list-enter-active {
+    opacity: 1;
+    transform: translate(0, -10px);
+  }
+  .list-leave {
+    opacity: 1;
+  }
+
   .item-leave.item-leave-active,
   .item-enter {
     opacity: 0.01;
     transform: translate(30px, 0);
   }
-
   .item-leave,
   .item-enter.item-enter-active {
     opacity: 1;
