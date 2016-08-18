@@ -9,11 +9,12 @@ HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-h
 ## TODO
 
 - [x] Item Page
-- [x] Real-time List Update with Animation
 - [x] Comment Page
 - [x] User Page
-- [ ] SSR
+- [x] Real-time List Update with Animation
 - [x] Router Transform Animation
+- [ ] SSR
+- [ ] Dynamic Router
 
 ## Run Locally
 
