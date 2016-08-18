@@ -3,9 +3,11 @@
 HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0).
 
 <p align="center">
-  <img src="https://zos.alipayobjects.com/rmsportal/XUTutezexphTbgs.png" width="700" />
-  <br />
-  <a href="http://dvajs.github.io/dva-hackernews/">Live Demo</a>
+  <a href="http://dvajs.github.io/dva-hackernews/">
+    <img src="https://zos.alipayobjects.com/rmsportal/XUTutezexphTbgs.png" width="700" />
+    <br />
+    Live Demo
+  </a>
 </p>
 
 ## TODO
