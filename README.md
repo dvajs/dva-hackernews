@@ -20,4 +20,5 @@ HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-h
 ```bash
 $ npm install
 $ npm start
+$ open http://localhost:8989/
 ```
