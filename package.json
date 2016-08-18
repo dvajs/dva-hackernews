@@ -23,11 +23,13 @@
     "dora-plugin-webpack": "0.6.x",
     "dora-plugin-webpack-hmr": "^0.1.0",
     "expect": "^1.20.2",
+    "gh-pages": "^0.11.0",
     "redbox-react": "^1.2.10"
   },
   "scripts": {
     "start": "dora --plugins \"proxy,webpack,webpack-hmr\"",
     "build": "atool-build",
-    "test": "atool-test-mocha ./src/**/*-test.js --timeout 20000"
+    "test": "atool-test-mocha ./src/**/*-test.js --timeout 20000",
+    "publish": "npm run build && gh-pages -d ./dist"
   }
 }
