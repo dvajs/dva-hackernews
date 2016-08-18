@@ -17,6 +17,7 @@ HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-h
 - [x] Router Transform Animation
 - [ ] SSR
 - [ ] Dynamic Router
+- [ ] Handle loading status automatically
 
 ## Run Locally
 
