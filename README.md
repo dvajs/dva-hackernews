@@ -13,7 +13,7 @@ HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-h
 - [x] Comment Page
 - [x] User Page
 - [ ] SSR
-- [ ] Router Transform Animation
+- [x] Router Transform Animation
 
 ## Run Locally
 
