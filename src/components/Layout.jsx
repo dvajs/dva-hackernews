@@ -11,10 +11,10 @@ const Layout = (props) => {
             <img className={styles.logo} src="https://zos.alipayobjects.com/rmsportal/AsASAiphPWWUJWG.png" />
           </Link>
           <Link activeClassName={styles.active} to="/top">Top</Link>
-          <Link to="/new">New</Link>
-          <Link to="/show">Show</Link>
-          <Link to="/ask">Ask</Link>
-          <Link to="/job">Jobs</Link>
+          <Link activeClassName={styles.active} to="/new">New</Link>
+          <Link activeClassName={styles.active} to="/show">Show</Link>
+          <Link activeClassName={styles.active} to="/ask">Ask</Link>
+          <Link activeClassName={styles.active} to="/job">Jobs</Link>
           <a className={styles.github} href="https://github.com/dvajs/dva-hackernews" target="_blank">
             Built with Dva
           </a>

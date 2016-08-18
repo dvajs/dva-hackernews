@@ -8,12 +8,26 @@ export default function({ history }) {
   return (
     <Router history={history}>
       <Redirect from="/" to="/top" />
-      <Route path="/top(/:page)" component={ListPage} />
-      <Route path="/new(/:page)" component={ListPage} />
-      <Route path="/show(/:page)" component={ListPage} />
-      <Route path="/ask(/:page)" component={ListPage} />
-      <Route path="/job(/:page)" component={ListPage} />
-      <Route path="/item(/:itemId)" component={ItemPage} />
+      <Route path="/top">
+        <IndexRoute component={ListPage} />
+        <Route path=":page" component={ListPage} />
+      </Route>
+      <Route path="/new">
+        <IndexRoute component={ListPage} />
+        <Route path=":page" component={ListPage} />
+      </Route>
+      <Route path="/show">
+        <IndexRoute component={ListPage} />
+        <Route path=":page" component={ListPage} />
+      </Route>
+      <Route path="/ask">
+        <IndexRoute component={ListPage} />
+        <Route path=":page" component={ListPage} />
+      </Route>
+      <Route path="/job">
+        <IndexRoute component={ListPage} />
+        <Route path=":page" component={ListPage} />
+      </Route>
       <Route path="/user(/:userId)" component={UserPage} />
     </Router>
   );
