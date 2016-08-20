@@ -18,19 +18,19 @@ function fetch (child) {
   });
 }
 
-export async function fetchIdsByType(type) {
+export function fetchIdsByType(type) {
   return fetch(`${type}stories`);
 }
 
-export async function fetchItem(id) {
+export function fetchItem(id) {
   return fetch(`item/${id}`);
 }
 
-export async function fetchItems(ids) {
+export function fetchItems(ids) {
   return Promise.all(ids.map(id => fetchItem(id)));
 }
 
-export async function fetchUser(id) {
+export function fetchUser(id) {
   return fetch(`user/${id}`);
 }
 
