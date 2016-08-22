@@ -1,4 +1,3 @@
-import { call, put } from 'dva/effects';
 
 export default {
 
@@ -9,10 +8,10 @@ export default {
   },
 
   reducers: {
-    ['app/showLoading'](state) {
+    ['showLoading'](state) {
       return { ...state, loading: true };
     },
-    ['app/hideLoading'](state) {
+    ['hideLoading'](state) {
       return { ...state, loading: false };
     },
   },

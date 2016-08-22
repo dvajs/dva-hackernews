@@ -1,4 +1,3 @@
-import { put, call, select } from 'dva/effects';
 import pathToRegexp from 'path-to-regexp';
 import { fetchUser } from '../../services/hn';
 
@@ -7,8 +6,8 @@ export default {
   state: {
     usersById: {},
   },
-  subscriptions: [
-    function({ dispatch, history }) {
+  subscriptions: {
+    setup({ dispatch, history }) {
       history.listen(({ pathname }, { params }) => {
         if (pathToRegexp('/user/:userId').test(pathname)) {
           dispatch({
@@ -18,20 +17,20 @@ export default {
         }
       });
     },
-  ],
+  },
   effects: {
-    *'user/fetchUser'({ payload: id }) {
+    *fetchUser({ payload: id }) {
       yield put({ type: 'app/showLoading' });
       const user = yield call(fetchUser, id);
       yield put({
-        type: 'user/saveUser',
+        type: 'saveUser',
         payload: user,
       });
       yield put({ type: 'app/hideLoading' });
     },
   },
   reducers: {
-    'user/saveUser'(state, { payload: user }) {
+    saveUser(state, { payload: user }) {
       return { ...state, usersById: { ...state.usersById, [user.id]:user } };
     },
   },

@@ -1,4 +1,3 @@
-import { put, call, select } from 'dva/effects';
 import pathToRegexp from 'path-to-regexp';
 import {
   fetchIdsByType,
@@ -28,8 +27,8 @@ export default {
     itemsById: {},
   },
 
-  subscriptions: [
-    function({ dispatch, history }) {
+  subscriptions: {
+    listSubscriber({ dispatch, history }) {
       let activeType = null;
       let unwatchList = null;
       let page = null;
@@ -37,11 +36,11 @@ export default {
       function fetchList(type, _page = 1) {
         page = _page;
         dispatch({
-          type: 'item/saveActiveType',
+          type: 'saveActiveType',
           payload: type,
         });
         dispatch({
-          type: 'item/fetchList',
+          type: 'fetchList',
           payload: {
             type,
             page,
@@ -52,13 +51,13 @@ export default {
       function doWatchList(type) {
         watchList(type, ids => {
           dispatch({
-            type: 'item/saveList',
+            type: 'saveList',
             payload: {
               type, ids
             },
           });
           dispatch({
-            type: 'item/fetchList',
+            type: 'fetchList',
             payload: {
               type,
               page,
@@ -67,7 +66,7 @@ export default {
         });
       }
 
-      history.listen(({ pathname }, { params }) => {
+      return history.listen(({ pathname }, { params }) => {
         for (const type of ITEM_TYPES) {
           if (pathToRegexp(`/${type}/:page?`).test(pathname)) {
             // fetch
@@ -84,20 +83,20 @@ export default {
       });
     },
 
-    function({ dispatch, history }) {
-      history.listen(({ pathname }, { params }) => {
+    itemSubscriber({ dispatch, history }) {
+      return history.listen(({ pathname }, { params }) => {
         if (pathToRegexp(`/item/:itemId`).test(pathname)) {
           dispatch({
-            type: 'item/fetchComments',
+            type: 'fetchComments',
             payload: params.itemId,
           });
         }
       });
     },
-  ],
+  },
 
   effects: {
-    *'item/fetchList'({ payload }) {
+    *fetchList({ payload }, { put, call, select }) {
       const { type, page } = payload;
       yield put({ type: 'app/showLoading' });
 
@@ -107,21 +106,21 @@ export default {
         fetchItems,
         ids.slice(itemsPerPage * (page - 1), itemsPerPage * page)
       );
-      yield put({ type: 'item/saveList', payload: { ids, type } });
-      yield put({ type: 'item/saveItems', payload: items });
+      yield put({ type: 'saveList', payload: { ids, type } });
+      yield put({ type: 'saveItems', payload: items });
 
       yield put({ type: 'app/hideLoading' });
     },
 
-    *'item/fetchComments'({ payload: id }) {
+    *fetchComments({ payload: id }, { put, call }) {
       yield put({ type: 'app/showLoading' });
       const item = yield call(fetchItem, id);
-      yield put({ type: 'item/saveItems', payload: [item] });
+      yield put({ type: 'saveItems', payload: [item] });
 
       let ids = item.kids;
       while (ids && ids.length) {
         const items = yield call(fetchItems, ids);
-        yield put({ type: 'item/saveItems', payload: items });
+        yield put({ type: 'saveItems', payload: items });
         ids = items.reduce((memo, item) => {
           if (item.kids) {
             memo = [...memo, ...item.kids];
@@ -135,12 +134,12 @@ export default {
   },
 
   reducers: {
-    'item/saveList'(state, { payload }) {
+    saveList(state, { payload }) {
       const { ids, type } = payload;
       return { ...state, lists: { ...state.lists, [type]: ids } };
     },
 
-    'item/saveItems'(state, { payload: itemsArr }) {
+    saveItems(state, { payload: itemsArr }) {
       const items = itemsArr.reduce((memo, item) => {
         memo[item.id] = item;
         return memo;
@@ -148,7 +147,7 @@ export default {
       return { ...state, itemsById: { ...state.itemsById, ...items }};
     },
 
-    'item/saveActiveType'(state, { payload: activeType }) {
+    saveActiveType(state, { payload: activeType }) {
       return { ...state, activeType };
     },
   },

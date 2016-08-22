@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "dva": "^0.0.16",
+    "dva": "^1.0.0-beta1",
     "firebase": "^2.4.2",
     "path-to-regexp": "^1.5.3",
     "react": "^15.1.0",
