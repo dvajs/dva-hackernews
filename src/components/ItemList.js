@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'dva/router';
 import styles from './ItemList.less';
-import Spinner from './Spinner.jsx';
-import Item from './Item.jsx';
+import Spinner from './Spinner';
+import Item from './Item';
 
 const ItemList = ({ loading, items, page, maxPage, activeType, location }) => {
   return (
