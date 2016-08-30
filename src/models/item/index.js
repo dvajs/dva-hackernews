@@ -66,11 +66,14 @@ export default {
         });
       }
 
-      return history.listen(({ pathname }, { params }) => {
+      return history.listen(({ pathname }) => {
         for (const type of ITEM_TYPES) {
-          if (pathToRegexp(`/${type}/:page?`).test(pathname)) {
+          const match = pathToRegexp(`/${type}/:page?`).exec(pathname);
+          if (match) {
+            const page = match[1];
+
             // fetch
-            fetchList(type, params.page);
+            fetchList(type, page);
 
             // watch
             if (activeType !== type) {

@@ -8,18 +8,20 @@ export default {
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      history.listen(({ pathname }, { params }) => {
-        if (pathToRegexp('/user/:userId').test(pathname)) {
+      history.listen(({ pathname }) => {
+        const match = pathToRegexp('/user/:userId').exec(pathname);
+        if (match) {
+          const userId = match[1];
           dispatch({
-            type: 'user/fetchUser',
-            payload: params.userId,
+            type: 'fetchUser',
+            payload: userId,
           });
         }
       });
     },
   },
   effects: {
-    *fetchUser({ payload: id }) {
+    *fetchUser({ payload: id }, { call, put }) {
       yield put({ type: 'app/showLoading' });
       const user = yield call(fetchUser, id);
       yield put({
