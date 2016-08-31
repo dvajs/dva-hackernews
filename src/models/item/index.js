@@ -87,11 +87,13 @@ export default {
     },
 
     itemSubscriber({ dispatch, history }) {
-      return history.listen(({ pathname }, { params }) => {
-        if (pathToRegexp(`/item/:itemId`).test(pathname)) {
+      return history.listen(({ pathname }) => {
+        const match = pathToRegexp(`/item/:itemId`).exec(pathname);
+        if (match) {
+          const itemId = match[1];
           dispatch({
             type: 'fetchComments',
-            payload: params.itemId,
+            payload: itemId,
           });
         }
       });
