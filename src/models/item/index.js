@@ -35,34 +35,14 @@ export default {
 
       function fetchList(type, _page = 1) {
         page = _page;
-        dispatch({
-          type: 'saveActiveType',
-          payload: type,
-        });
-        dispatch({
-          type: 'fetchList',
-          payload: {
-            type,
-            page,
-          },
-        });
+        dispatch({ type: 'saveActiveType', payload: type });
+        dispatch({ type: 'fetchList', payload: { type, page } });
       }
 
       function doWatchList(type) {
         watchList(type, ids => {
-          dispatch({
-            type: 'saveList',
-            payload: {
-              type, ids
-            },
-          });
-          dispatch({
-            type: 'fetchList',
-            payload: {
-              type,
-              page,
-            },
-          });
+          dispatch({ type: 'saveList', payload: { type, ids } });
+          dispatch({ type: 'fetchList', payload: { type, page } });
         });
       }
 
@@ -103,8 +83,6 @@ export default {
   effects: {
     *fetchList({ payload }, { put, call, select }) {
       const { type, page } = payload;
-      yield put({ type: 'app/showLoading' });
-
       const ids = yield call(fetchIdsByType, type);
       const itemsPerPage = yield select(state => state.item.itemsPerPage);
       const items = yield call(
@@ -113,12 +91,9 @@ export default {
       );
       yield put({ type: 'saveList', payload: { ids, type } });
       yield put({ type: 'saveItems', payload: items });
-
-      yield put({ type: 'app/hideLoading' });
     },
 
     *fetchComments({ payload: id }, { put, call }) {
-      yield put({ type: 'app/showLoading' });
       const item = yield call(fetchItem, id);
       yield put({ type: 'saveItems', payload: [item] });
 
@@ -133,8 +108,6 @@ export default {
           return memo;
         }, []);
       }
-
-      yield put({ type: 'app/hideLoading' });
     },
   },
 

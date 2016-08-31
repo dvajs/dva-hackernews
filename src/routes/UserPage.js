@@ -7,7 +7,7 @@ import { userSelector } from '../models/user/selectors';
 import Spinner from '../components/Spinner';
 import { timeAgo } from '../utils/filters';
 
-function UserPage({ app, user }) {
+function UserPage({ loading, user }) {
 
   function renderUser() {
     return (
@@ -36,7 +36,7 @@ function UserPage({ app, user }) {
   return (
     <Layout>
       <div className={styles.normal}>
-        <Spinner loading={app.loading} />
+        <Spinner loading={loading} />
         { user? renderUser() : null }
       </div>
     </Layout>
@@ -48,7 +48,7 @@ UserPage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    app: state.app,
+    loading: state.loading.global,
     ...userSelector(state, ownProps),
   };
 }

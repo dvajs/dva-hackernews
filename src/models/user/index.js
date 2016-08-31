@@ -12,23 +12,15 @@ export default {
         const match = pathToRegexp('/user/:userId').exec(pathname);
         if (match) {
           const userId = match[1];
-          dispatch({
-            type: 'fetchUser',
-            payload: userId,
-          });
+          dispatch({ type: 'fetchUser', payload: userId });
         }
       });
     },
   },
   effects: {
     *fetchUser({ payload: id }, { call, put }) {
-      yield put({ type: 'app/showLoading' });
       const user = yield call(fetchUser, id);
-      yield put({
-        type: 'saveUser',
-        payload: user,
-      });
-      yield put({ type: 'app/hideLoading' });
+      yield put({ type: 'saveUser', payload: user });
     },
   },
   reducers: {

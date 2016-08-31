@@ -8,12 +8,12 @@ import Spinner from '../components/Spinner';
 import { host, timeAgo } from '../utils/filters';
 import Comment from '../components/Comment';
 
-function ItemPage({ app, item, itemsById }) {
+function ItemPage({ loading, item, itemsById }) {
   if (!item) return null;
   return (
     <Layout>
       <div className={styles.normal}>
-        <Spinner loading={app.loading} />
+        <Spinner loading={loading} />
         <div className={styles.header}>
           <a href={item.url}><h1>{item.title}</h1></a>
           <span className={styles.host}>{host(item.url)}</span>
@@ -45,7 +45,7 @@ ItemPage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    app: state.app,
+    loading: state.loading.global,
     ...itemSelector(state, ownProps),
   };
 }
