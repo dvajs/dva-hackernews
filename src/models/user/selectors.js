@@ -1,5 +1,5 @@
 
-export function userSelector(state, ownProps) {
+export default function userSelector(state, ownProps) {
   return {
     user: state.user.usersById[ownProps.params.userId],
   };

@@ -2,13 +2,13 @@ import Firebase from 'firebase';
 
 const api = new Firebase('https://hacker-news.firebaseio.com/v0');
 
-function fetch (child) {
+function fetch(child) {
   return new Promise((resolve, reject) => {
-    api.child(child).once('value', snapshot => {
+    api.child(child).once('value', (snapshot) => {
       const val = snapshot.val();
       if (val) {
         resolve(val);
-      }  else {
+      } else {
         // New items cannot be got so quickly.
         setTimeout(() => {
           fetch(child).then(val => resolve(val));
@@ -37,7 +37,7 @@ export function fetchUser(id) {
 export function watchList(type, cb) {
   let first = true;
   const ref = api.child(`${type}stories`);
-  const handler = snapshot => {
+  const handler = (snapshot) => {
     if (first) {
       first = false;
     } else {

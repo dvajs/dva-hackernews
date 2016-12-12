@@ -7,7 +7,7 @@ import {
 } from '../../services/hn';
 
 const ITEM_TYPES = [
-  'top', 'new', 'show', 'ask', 'job'
+  'top', 'new', 'show', 'ask', 'job',
 ];
 
 export default {
@@ -40,7 +40,7 @@ export default {
       }
 
       function doWatchList(type) {
-        watchList(type, ids => {
+        watchList(type, (ids) => {
           dispatch({ type: 'saveList', payload: { type, ids } });
           dispatch({ type: 'fetchList', payload: { type, page } });
         });
@@ -68,7 +68,7 @@ export default {
 
     itemSubscriber({ dispatch, history }) {
       return history.listen(({ pathname }) => {
-        const match = pathToRegexp(`/item/:itemId`).exec(pathname);
+        const match = pathToRegexp('/item/:itemId').exec(pathname);
         if (match) {
           const itemId = match[1];
           dispatch({
@@ -81,19 +81,19 @@ export default {
   },
 
   effects: {
-    *fetchList({ payload }, { put, call, select }) {
+    * fetchList({ payload }, { put, call, select }) {
       const { type, page } = payload;
       const ids = yield call(fetchIdsByType, type);
       const itemsPerPage = yield select(state => state.item.itemsPerPage);
       const items = yield call(
         fetchItems,
-        ids.slice(itemsPerPage * (page - 1), itemsPerPage * page)
+        ids.slice(itemsPerPage * (page - 1), itemsPerPage * page),
       );
       yield put({ type: 'saveList', payload: { ids, type } });
       yield put({ type: 'saveItems', payload: items });
     },
 
-    *fetchComments({ payload: id }, { put, call }) {
+    * fetchComments({ payload: id }, { put, call }) {
       const item = yield call(fetchItem, id);
       yield put({ type: 'saveItems', payload: [item] });
 
@@ -101,7 +101,8 @@ export default {
       while (ids && ids.length) {
         const items = yield call(fetchItems, ids);
         yield put({ type: 'saveItems', payload: items });
-        ids = items.reduce((memo, item) => {
+        ids = items.reduce((_memo, item) => {
+          let memo = _memo;
           if (item.kids) {
             memo = [...memo, ...item.kids];
           }
@@ -118,11 +119,12 @@ export default {
     },
 
     saveItems(state, { payload: itemsArr }) {
-      const items = itemsArr.reduce((memo, item) => {
+      const items = itemsArr.reduce((_memo, item) => {
+        const memo = _memo;
         memo[item.id] = item;
         return memo;
       }, {});
-      return { ...state, itemsById: { ...state.itemsById, ...items }};
+      return { ...state, itemsById: { ...state.itemsById, ...items } };
     },
 
     saveActiveType(state, { payload: activeType }) {

@@ -36,12 +36,12 @@ class Comment extends Component {
           {
             comment.kids
               ? (<span> | <a href="" className={styles.expand} onClick={this.handleExpand}>
-                  {`${open ? 'collapse' : 'expand'} ${pluralize(comment.kids.length)}`}
-                </a></span>)
+                {`${open ? 'collapse' : 'expand'} ${pluralize(comment.kids.length)}`}
+              </a></span>)
               : null
           }
         </div>
-        <div className={styles.text} dangerouslySetInnerHTML={{__html: comment.text}} />
+        <div className={styles.text} dangerouslySetInnerHTML={{ __html: comment.text }} />
         <div className={styles.commentChildren}>
           {
             comment.kids && open
