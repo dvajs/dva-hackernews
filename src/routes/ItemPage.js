@@ -16,7 +16,7 @@ function ItemPage({ loading, item, itemsById }) {
         <Spinner loading={loading} />
         <div className={styles.header}>
           <a href={item.url}><h1>{item.title}</h1></a>
-          <span className={styles.host}>{host(item.url)}</span>
+          {item.url ? <span className={styles.host}>{host(item.url)}</span> : null}
           <p className={styles.meta}>
             <span>{`${item.score} points | by `}</span>
             <Link to={`/user/${item.by}`}>{item.by}</Link>
