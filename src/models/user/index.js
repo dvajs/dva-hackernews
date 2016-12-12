@@ -18,14 +18,14 @@ export default {
     },
   },
   effects: {
-    *fetchUser({ payload: id }, { call, put }) {
+    * fetchUser({ payload: id }, { call, put }) {
       const user = yield call(fetchUser, id);
       yield put({ type: 'saveUser', payload: user });
     },
   },
   reducers: {
     saveUser(state, { payload: user }) {
-      return { ...state, usersById: { ...state.usersById, [user.id]:user } };
+      return { ...state, usersById: { ...state.usersById, [user.id]: user } };
     },
   },
 }

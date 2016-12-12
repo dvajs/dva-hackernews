@@ -8,14 +8,14 @@ const Layout = (props) => {
       <div className={styles.header}>
         <div className={styles.inner}>
           <Link to="/">
-            <img className={styles.logo} src="https://zos.alipayobjects.com/rmsportal/AsASAiphPWWUJWG.png" />
+            <img role="presentation" className={styles.logo} src="https://zos.alipayobjects.com/rmsportal/AsASAiphPWWUJWG.png" />
           </Link>
           <Link activeClassName={styles.active} to="/top">Top</Link>
           <Link activeClassName={styles.active} to="/new">New</Link>
           <Link activeClassName={styles.active} to="/show">Show</Link>
           <Link activeClassName={styles.active} to="/ask">Ask</Link>
           <Link activeClassName={styles.active} to="/job">Jobs</Link>
-          <a className={styles.github} href="https://github.com/dvajs/dva-hackernews" target="_blank">
+          <a className={styles.github} rel="noopener noreferrer" href="https://github.com/dvajs/dva-hackernews" target="_blank">
             Built with Dva
           </a>
         </div>

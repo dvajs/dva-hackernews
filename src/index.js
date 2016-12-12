@@ -1,7 +1,7 @@
-import './index.html';
-import './index.less';
 import dva, { connect } from 'dva';
 import createLoading from 'dva-loading';
+import './index.html';
+import './index.less';
 
 // 1. Initialize
 const app = dva();

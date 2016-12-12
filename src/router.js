@@ -4,7 +4,7 @@ import ListPage from './routes/ListPage';
 import ItemPage from './routes/ItemPage';
 import UserPage from './routes/UserPage';
 
-export default function({ history }) {
+export default function ({ history }) {
   return (
     <Router history={history}>
       <Redirect from="/" to="/top" />
@@ -32,4 +32,4 @@ export default function({ history }) {
       <Route path="/user(/:userId)" component={UserPage} />
     </Router>
   );
-};
+}
