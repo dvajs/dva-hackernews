@@ -1,6 +1,6 @@
 
 export function listSelector(state, ownProps) {
-  const page = parseInt(ownProps.params.page || 1, 10);
+  const page = parseInt(ownProps.match.params.page || 1, 10);
   const { itemsPerPage, activeType, lists, itemsById } = state.item;
   const ids = lists[activeType].slice(itemsPerPage * (page - 1), itemsPerPage * page);
   const items = ids.reduce((memo, id) => {
@@ -17,7 +17,7 @@ export function listSelector(state, ownProps) {
 }
 
 export function itemSelector(state, ownProps) {
-  const id = ownProps.params.itemId;
+  const id = ownProps.match.params.itemId;
   const item = state.item.itemsById[id];
 
   return {

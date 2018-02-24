@@ -4,7 +4,7 @@ import {
   fetchItem,
   fetchItems,
   watchList,
-} from '../../services/hn';
+} from '../services/hn';
 
 const ITEM_TYPES = [
   'top', 'new', 'show', 'ask', 'job',

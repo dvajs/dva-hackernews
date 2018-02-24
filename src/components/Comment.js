@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'dva/router';
 import styles from './Comment.less';
 import { timeAgo } from '../utils/filters';

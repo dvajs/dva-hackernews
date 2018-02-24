@@ -1,10 +1,7 @@
-import React, { Component, PropTypes } from 'react';
 import { connect } from 'dva';
-import { Link } from 'dva/router';
 import styles from './UserPage.less';
-import Layout from '../components/Layout';
-import userSelector from '../models/user/selectors';
-import Spinner from '../components/Spinner';
+import userSelector from '../selectors/user';
+import Spinner from './Spinner';
 import { timeAgo } from '../utils/filters';
 
 function UserPage({ loading, user }) {
@@ -35,17 +32,12 @@ function UserPage({ loading, user }) {
   }
 
   return (
-    <Layout>
-      <div className={styles.normal}>
-        <Spinner loading={loading} />
-        { user ? renderUser() : null }
-      </div>
-    </Layout>
+    <div className={styles.normal}>
+      <Spinner loading={loading} />
+      { user ? renderUser() : null }
+    </div>
   );
 }
-
-UserPage.propTypes = {
-};
 
 function mapStateToProps(state, ownProps) {
   return {
