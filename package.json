@@ -21,6 +21,6 @@
     "start": "umi dev",
     "build": "umi build",
     "test": "umi test",
-    "publish": "npm run build && gh-pages -d ./dist"
+    "publish": "PUBLIC_PATH=/dva-hackernews/static/ npm run build && gh-pages -d ./dist"
   }
 }
