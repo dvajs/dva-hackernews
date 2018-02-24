@@ -1,0 +1,1 @@
+webpackJsonp([3],{273:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var u=n(44),r=u.Redirect;t.default=r},280:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var u=n(0),r=n.n(u),a=n(273),o=n.n(a),c=r.a.createElement(o.a,{to:"/top"});t.default=function(){return c}}});
