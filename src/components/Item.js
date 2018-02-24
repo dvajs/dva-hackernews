@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react';
 import { Link } from 'dva/router';
 import styles from './Item.less';
 import { host, timeAgo } from '../utils/filters';
@@ -49,10 +48,6 @@ const Item = ({ item }) => {
       }
     </div>
   );
-};
-
-Item.propTypes = {
-  item: PropTypes.object.isRequired,
 };
 
 export default Item;

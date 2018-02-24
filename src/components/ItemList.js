@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'dva/router';
 import styles from './ItemList.less';

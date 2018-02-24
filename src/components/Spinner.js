@@ -1,4 +1,3 @@
-import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import styles from './Spinner.less';
 
@@ -15,9 +14,5 @@ function Spinner({ loading }) {
     </div>
   );
 }
-
-Spinner.propTypes = {
-  loading: PropTypes.bool.isRequired,
-};
 
 export default Spinner;

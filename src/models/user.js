@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
-import { fetchUser } from '../../services/hn';
+import { fetchUser } from '../services/hn';
 
 export default {
   namespace: 'user',

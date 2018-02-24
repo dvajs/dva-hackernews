@@ -1,6 +1,6 @@
 # dva-hackernews
 
-HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0).
+HackerNews clone built with [Umi](https://github.com/umijs/umi) and [Dva](https://github.com/dvajs/dva), based on [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0).
 
 <p align="center">
   <a href="http://dvajs.github.io/dva-hackernews/">
@@ -18,7 +18,7 @@ HackerNews clone built with [Dva](https://github.com/dvajs/dva), based on [vue-h
 - [x] Real-time List Update with Animation
 - [x] Router Transform Animation
 - [ ] SSR
-- [ ] Dynamic Router
+- [x] Dynamic Router
 - [ ] Handle loading status automatically
 - [ ] Render Performance
 
@@ -34,10 +34,4 @@ Start server.
 
 ```bash
 $ npm start
-```
-
-Open app in browser.
-
-```bash
-$ open http://localhost:8989/
 ```
